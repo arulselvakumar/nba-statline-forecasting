@@ -1,0 +1,8 @@
+{
+  "rows": 52707,
+  "unique_players": 694,
+  "unique_games": 2460,
+  "duplicate_player_game_rows": 0,
+  "train_rows": 26401,
+  "eval_rows": 26306
+}
