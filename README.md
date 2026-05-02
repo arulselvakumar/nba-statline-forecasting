@@ -1,24 +1,113 @@
-# nba-statline-forecasting
-This project constructs an injury-aware forecasting system that predicts NBA player statlines (points, rebounds, assists) using player statistics and roster availability information.
-When key players are ruled out of NBA games due to injury, teammates often experience significant changes in minutes played, opportunities, and statistical output. Modern forecasting approaches struggle to adapt quickly to these roster changes.
-The goal of this project is to develop a data-driven forecasting model that takes into account injury-driven availability and matchup context to predict player performance.
+# NBA Statline Forecasting
 
-## Project Objectives:
-- Predict NBA player statistics (points, rebounds, assists)
-- Incorporate injury reports and roster availability
-- Analyze player statistics and matchup context
-- Evaluate models using MAE and RMSE for error evaluation
+## Overview
+This project builds a context-aware machine learning system to forecast NBA player statlines (Points, Rebounds, Assists) using pregame features and deployable models.
 
-## Repository Structure:
-data/ - datasets
-notebooks/ - EDA notebooks
-src/ - modeling and pipeline code
-experiments/ - tracking experiment outputs
-docs/ - project documentation
+NBA player performance varies significantly based on game context, including opponent strength, usage rate, and roster availability. Traditional forecasting methods relying on static averages fail to capture these dynamics.
 
-## Data Sources:
-- NBA player statistics via **nba_api**
-- Official NBA injury reports from https://official.nba.com/nba-injury-report-2025-26-season/
+This project emphasizes pregame forecasting with strict prevention of data leakage by using only features available before game start.
 
-## Evaluation Metrics:
-Model performance will be evaluated using Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE) to determine prediction accuracy and errors.
+---
+
+## Project Objectives
+- Predict NBA player statistics (Points, Rebounds, Assists)
+- Develop context-aware feature engineering (Baseline → V3)
+- Compare linear and nonlinear models (Linear Regression, Random Forest, XGBoost)
+- Optimize model performance using hyperparameter tuning (V4)
+- Evaluate performance on a future season using time-based validation
+- Deploy an interactive forecasting system using Streamlit
+
+---
+
+## Dataset
+- Source: nba_api
+- ~52,707 player-game rows
+- 694 players
+- ~2,460 games
+- Seasons:
+  - Train: 2023–24
+  - Test: 2024–25 (unseen)
+
+---
+
+## Methodology
+
+### Feature Engineering (Versioning)
+- Baseline: season averages
+- V0: + opponent context + home/away
+- V1: + availability / missing production
+- V2: + usage + matchup context
+- V3: + interaction features (usage × minutes, pace-adjusted stats, rolling trends)
+- V4: hyperparameter tuning on V3 features
+
+### Models
+- Linear Regression (baseline interpretability)
+- Random Forest (ensemble)
+- XGBoost (final model)
+
+### Evaluation
+- Time-based holdout (no random split)
+- Metrics:
+  - MAE (primary)
+  - RMSE (secondary)
+- Evaluation performed on future season (2024–25)
+
+---
+
+## Results
+
+Best Model: **XGBoost (V4)**
+
+| Target | MAE |
+|--------|-----|
+| Points (PTS) | ~2.19 |
+| Rebounds (REB) | ~0.91 |
+| Assists (AST) | ~0.60 |
+
+Key insight:
+Feature engineering (V3) combined with hyperparameter tuning (V4) produced largest performance gains.
+
+---
+
+## Deployment
+
+Project includes a Streamlit web application simulating real-world pregame forecasting.
+
+Features:
+- Generate random held-out NBA games
+- Input user statline predictions
+- Compare user predictions vs model vs actual results
+- Evaluate performance using total prediction error
+
+Run locally:
+```bash
+streamlit run deployment/app.py
+```
+
+---
+
+## Repository Structure
+
+data/         - datasets (raw, intermediate, final)  
+notebooks/    - data processing, modeling, evaluation  
+models/       - trained models (local use)  
+outputs/      - figures and evaluation results  
+deployment/   - Streamlit application  
+
+---
+
+## Monitoring & Governance
+
+- Track MAE / RMSE over time  
+- Monitor feature drift (usage, lineup changes)  
+- Retrain models periodically (rolling season updates)  
+- Maintain model versioning and experiment tracking  
+
+---
+
+## Future Work
+
+- Explore neural network-based models (deep learning)  
+- Real-time data pipeline integration  
+- Public API or dashboard deployment  
+- Enhanced lineup and matchup feature modeling

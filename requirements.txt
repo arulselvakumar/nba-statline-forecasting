@@ -7,3 +7,5 @@ seaborn
 jupyter
 wandb
 xgboost
+streamlit
+joblib
