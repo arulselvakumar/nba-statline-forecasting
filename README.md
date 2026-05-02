@@ -88,13 +88,13 @@ streamlit run deployment/app.py
 
 ## Repository Structure
 
-data/         - datasets
-deployment/   - Streamlit application
-docs/         - project documentation
-experiments/  - experiment tracking and figures
-notebooks/    - data processing, modeling, evaluation  
-outputs/      - figures and evaluation results
-src/          - source code utilities
+- `data/` - datasets
+- `deployment/` - Streamlit application
+- `docs/` - project documentation
+- `experiments/` - experiment tracking and figures
+- `notebooks/` - data processing, modeling, and evaluation
+- `outputs/` - figures and evaluation results
+- `src/` - source code utilities
 
 ---
 
