@@ -88,11 +88,13 @@ streamlit run deployment/app.py
 
 ## Repository Structure
 
-data/         - datasets (raw, intermediate, final)  
+data/         - datasets
+deployment/   - Streamlit application
+docs/         - project documentation
+experiments/  - experiment tracking and figures
 notebooks/    - data processing, modeling, evaluation  
-models/       - trained models (local use)  
-outputs/      - figures and evaluation results  
-deployment/   - Streamlit application  
+outputs/      - figures and evaluation results
+src/          - source code utilities
 
 ---
 
