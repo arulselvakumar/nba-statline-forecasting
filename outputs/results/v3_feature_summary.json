@@ -1,0 +1,29 @@
+{
+  "rows": 52707,
+  "columns": 92,
+  "v3_feature_count": 22,
+  "v3_features": [
+    "days_since_last_game",
+    "is_back_to_back",
+    "is_short_rest",
+    "pts_trend_l5_l10",
+    "reb_trend_l5_l10",
+    "ast_trend_l5_l10",
+    "opp_pace_rel",
+    "opp_def_rating_rel",
+    "pace_adj_pts",
+    "pace_adj_reb",
+    "pace_adj_ast",
+    "minutes_x_usage",
+    "usage_x_opp_pace",
+    "usage_x_opp_def",
+    "missing_pts_share",
+    "missing_reb_share",
+    "missing_ast_share",
+    "teammates_out_x_usage",
+    "teammates_out_x_min",
+    "pts_l5_x_opp_def",
+    "reb_l5_x_opp_def",
+    "ast_l5_x_opp_def"
+  ]
+}

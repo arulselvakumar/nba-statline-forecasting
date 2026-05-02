@@ -1,0 +1,50 @@
+{
+  "version": "V4",
+  "description": "V3 context features with tuned Random Forest/XGBoost and Linear Regression reference.",
+  "train_season": "2023-24",
+  "test_season": "2024-25",
+  "feature_count": 78,
+  "targets": [
+    "target_pts",
+    "target_reb",
+    "target_ast"
+  ],
+  "best_models_by_target": [
+    {
+      "run_id": "V4_target_ast_XGBRegressor",
+      "version": "V4",
+      "target": "target_ast",
+      "model": "XGBRegressor",
+      "tuned": true,
+      "mae": 0.602004885673523,
+      "rmse": 0.886845785443452,
+      "feature_count": 78,
+      "runtime_seconds": 3.0154454708099365,
+      "best_params": "{\"model__subsample\": 1.0, \"model__reg_lambda\": 1, \"model__reg_alpha\": 0, \"model__n_estimators\": 200, \"model__max_depth\": 7, \"model__learning_rate\": 0.1, \"model__colsample_bytree\": 1.0}"
+    },
+    {
+      "run_id": "V4_target_reb_XGBRegressor",
+      "version": "V4",
+      "target": "target_reb",
+      "model": "XGBRegressor",
+      "tuned": true,
+      "mae": 0.9080924987792969,
+      "rmse": 1.2576597132796845,
+      "feature_count": 78,
+      "runtime_seconds": 3.174389600753784,
+      "best_params": "{\"model__subsample\": 1.0, \"model__reg_lambda\": 1, \"model__reg_alpha\": 0, \"model__n_estimators\": 200, \"model__max_depth\": 7, \"model__learning_rate\": 0.1, \"model__colsample_bytree\": 1.0}"
+    },
+    {
+      "run_id": "V4_target_pts_XGBRegressor",
+      "version": "V4",
+      "target": "target_pts",
+      "model": "XGBRegressor",
+      "tuned": true,
+      "mae": 2.195286989212036,
+      "rmse": 3.0123709876582527,
+      "feature_count": 78,
+      "runtime_seconds": 2.8487625122070312,
+      "best_params": "{\"model__subsample\": 1.0, \"model__reg_lambda\": 1, \"model__reg_alpha\": 0, \"model__n_estimators\": 200, \"model__max_depth\": 7, \"model__learning_rate\": 0.1, \"model__colsample_bytree\": 1.0}"
+    }
+  ]
+}
