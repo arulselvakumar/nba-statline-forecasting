@@ -94,7 +94,7 @@ streamlit run deployment/app.py
 - `experiments/` - experiment tracking and figures
 - `notebooks/` - data processing, modeling, and evaluation
 - `outputs/` - figures and evaluation results
-- `src/` - source code utilities
+
 
 ---
 
