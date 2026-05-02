@@ -15,6 +15,34 @@ df["game_date"] = pd.to_datetime(df["game_date"])
 
 replay_df = df[df["season"] == "2024-25"].copy()
 
+player_role = (
+    replay_df.groupby("player_name", as_index=False)
+    .agg(
+        avg_pts=("season_avg_pts", "mean"),
+        avg_min=("season_avg_min", "mean"),
+        avg_fga=("season_avg_fga", "mean"),
+        avg_usg=("season_avg_usg", "mean"),
+        games=("game_id", "nunique")
+    )
+)
+
+player_role = player_role[player_role["games"] >= 10].copy()
+
+player_role["demo_score"] = (
+    player_role["avg_pts"].rank(pct=True) * 0.35 +
+    player_role["avg_min"].rank(pct=True) * 0.30 +
+    player_role["avg_fga"].rank(pct=True) * 0.25 +
+    player_role["avg_usg"].rank(pct=True) * 0.10
+)
+
+top_players = player_role[
+    player_role["demo_score"] >= player_role["demo_score"].quantile(0.80)
+]["player_name"]
+
+replay_df = replay_df[replay_df["player_name"].isin(top_players)].copy()
+
+st.write("Demo player pool:", replay_df["player_name"].nunique(), "players")
+
 model_pts = joblib.load(MODELS_DIR / "xgboost_v4_target_pts.pkl")
 model_reb = joblib.load(MODELS_DIR / "xgboost_v4_target_reb.pkl")
 model_ast = joblib.load(MODELS_DIR / "xgboost_v4_target_ast.pkl")
